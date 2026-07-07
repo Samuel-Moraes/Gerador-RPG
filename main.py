@@ -5,7 +5,7 @@ import inimigos
 
 nivelGlobal = 6
 
-limites_por_nivel = {1: 5, 2: 8, 3: 10, 4: 14, 5: 16, 6: 20}
+limites_por_nivel = {1: 5, 2: 8, 3: 10, 4: 14, 5: 16, 6: 18}
 multiplicadores_vida = {1: 1, 2: 1.2, 3: 1.3, 4: 1.4, 5: 1.5, 6: 1.7}
 
 root = tk.Tk()
@@ -54,7 +54,7 @@ def gerar_inimigos():
         frame = tk.Frame(root, bg="#1e1e1e", bd=2)
         frames.append(frame)
         col = idx // 5
-        row = (idx % 5) + 1  # +1 para deixar a linha 0 livre para o botão
+        row = (idx % 4) + 1  # +1 para deixar a linha 0 livre para o botão
         frame.grid(row=row, column=col, padx=10, pady=5)
 
         label = tk.Label(
