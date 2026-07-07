@@ -1,16 +1,7 @@
 import tkinter as tk
 import random
 import math
-
-# Nome | Vida Maxima | Esquiva Maxima | Elemento | Rank
-inimigos = [
-    ["Desertor", 6, 6, "Terra", 1],
-    ["Esqueleto", 6, 6, "Terra", 1],
-    ["Moglin", 12, 8, "Terra", 1],
-    ["Alma Penada", 12, 8, "Terra", 1],
-    ["Slime", 18, 10, "Terra", 1],
-    ["Pampka", 20, 12, "Terra", 1],
-]
+import inimigos
 
 nivelGlobal = 6
 
@@ -18,9 +9,9 @@ limites_por_nivel = {1: 5, 2: 8, 3: 10, 4: 14, 5: 16, 6: 20}
 multiplicadores_vida = {1: 1, 2: 1.2, 3: 1.3, 4: 1.4, 5: 1.5, 6: 1.7}
 
 def sorteadorTipoInimigo():
-    return random.choice(inimigos)
+    return random.choice(inimigos.inimigos)
 
-nome, vida_max, esquiva_max, elemento, rank = sorteadorTipoInimigo()
+nome, vida_max, esquiva_max, elemento, rank, dano_texto = sorteadorTipoInimigo()
 vida_max = math.ceil(vida_max * multiplicadores_vida.get(nivelGlobal, 1))
 quantidade_max = limites_por_nivel.get(nivelGlobal, 5)
 quantidade = random.randint(1, quantidade_max)
@@ -35,7 +26,8 @@ for i in range(quantidade):
         "esquiva": esquiva,
         "elemento": elemento,
         "rank": rank,
-        "numero": i+1  # adiciona número do inimigo
+        "dano": dano_texto,
+        "numero": i+1
     })
 
 root = tk.Tk()
@@ -66,6 +58,7 @@ def aplicar_dano(inimigo_id):
                  f"--------------------\n"
                  f"- Elemento: {lista_inimigos[inimigo_id]['elemento']}\n"
                  f"- Rank: {lista_inimigos[inimigo_id]['rank']}\n"
+                 f"- Dano: {lista_inimigos[inimigo_id]['dano']}\n"
                  f"--------------------",
             fg=cor_texto
         )
@@ -81,13 +74,14 @@ for idx, inimigo in enumerate(lista_inimigos):
     label = tk.Label(
         frame,
         text=f"--------------------\n"
-             f"- {inimigo['nome']} - {inimigo['numero']}\n"
+             f"- {inimigo['nome']} {inimigo['numero']}\n"
              f"--------------------\n"
              f"- Vida: {inimigo['vida']}\n"
              f"- Esquiva: {inimigo['esquiva']}\n"
              f"--------------------\n"
              f"- Elemento: {inimigo['elemento']}\n"
              f"- Rank: {inimigo['rank']}\n"
+             f"- Dano: {inimigo['dano']}\n"
              f"--------------------",
         fg="#00ff00",
         bg="#1e1e1e",
