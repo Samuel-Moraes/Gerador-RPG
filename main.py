@@ -49,7 +49,7 @@ def gerar_inimigos():
             "numero": i+1
         })
 
-    # Cria os inimigos em grade (5 por coluna), começando na linha 1
+    # Cria os inimigos em grade (4 por coluna), começando na linha 1
     for idx, inimigo in enumerate(lista_inimigos):
         frame = tk.Frame(root, bg="#1e1e1e", bd=2)
         frames.append(frame)
