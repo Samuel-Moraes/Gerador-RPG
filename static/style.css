@@ -1,0 +1,189 @@
+body {
+    background-color: #121212;
+    color: #00ff00;
+    font-family: 'Consolas', 'Courier New', monospace;
+    padding: 30px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headerPanel {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px dashed #333;
+}
+
+.headerForm {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    font-size: 16px;
+}
+
+select {
+    font-family: inherit;
+    padding: 8px 15px;
+    background-color: #1e1e1e;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button {
+    font-family: inherit;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btnReroll {
+    background-color: transparent;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+}
+
+.btnReroll:hover {
+    background-color: #00ff00;
+    color: #121212;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.btnDano {
+    background-color: #222;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+}
+
+.btnDano:hover {
+    background-color: #00ff00;
+    color: #121212;
+}
+
+.enemyGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+}
+
+.enemyCard {
+    background-color: #1e1e1e;
+    padding: 25px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.enemyCard.alive {
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.enemyCard.alive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
+.enemyCard.dead {
+    border: 2px solid #ff0000;
+    color: #ff0000;
+    opacity: 0.6;
+}
+
+.enemyCard.dead .divider {
+    border-top: 1px dashed #ff0000;
+}
+
+.enemyCard.dead select, .enemyCard.dead button {
+    border-color: #ff0000;
+    color: #ff0000;
+}
+
+.enemyTitle {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.divider {
+    width: 100%;
+    border-top: 1px dashed #00ff00;
+    margin: 12px 0;
+}
+
+.statsBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.statRow {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.statLabel {
+    opacity: 0.8;
+}
+
+.statValue {
+    font-weight: bold;
+}
+
+.actionForm {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+}
+
+.danoInput {
+    width: 70px;
+    font-family: inherit;
+    padding: 8px;
+    background-color: #121212;
+    color: inherit;
+    border: 1px solid inherit;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.danoInput:focus {
+    outline: none;
+    box-shadow: 0 0 5px currentColor;
+}
+
+.statusDead {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 3px;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0.3; }
+}

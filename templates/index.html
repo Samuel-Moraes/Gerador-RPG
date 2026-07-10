@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Inimigos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="headerPanel">
+        <form action="{{ url_for('gerar') }}" method="POST" class="headerForm">
+            <label for="nivel">NÍVEL GLOBAL:</label>
+            <select name="nivel" id="nivel">
+                {% for n in limitesPorNivel.keys() %}
+                    <option value="{{ n }}" {% if n == nivelGlobal %}selected{% endif %}>Nível {{ n }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btnReroll">RE-ROLAR INIMIGOS</button>
+        </form>
+    </div>
+
+    <div class="enemyGrid">
+        {% for inimigo in inimigos %}
+            <div class="enemyCard {% if inimigo.vida > 0 %}alive{% else %}dead{% endif %}">
+                
+                <div class="enemyTitle">> {{ inimigo.nome }} {{ inimigo.numero }}</div>
+                
+                <div class="divider"></div>
+                
+                <div class="statsBlock">
+                    <div class="statRow">
+                        <span class="statLabel">Vida:</span>
+                        <span class="statValue">{{ inimigo.vida }}</span>
+                    </div>
+                    <div class="statRow">
+                        <span class="statLabel">Esquiva:</span>
+                        <span class="statValue">{{ inimigo.esquiva }}</span>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+
+                <div class="statsBlock">
+                    <div class="statRow">
+                        <span class="statLabel">Elemento:</span>
+                        <span class="statValue">{{ inimigo.elemento }}</span>
+                    </div>
+                    <div class="statRow">
+                        <span class="statLabel">Rank:</span>
+                        <span class="statValue">{{ inimigo.rank }}</span>
+                    </div>
+                    <div class="statRow">
+                        <span class="statLabel">Dano:</span>
+                        <span class="statValue">{{ inimigo.dano }}</span>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+
+                {% if inimigo.vida > 0 %}
+                <form action="{{ url_for('aplicarDano', inimigoIdx=loop.index0) }}" method="POST" class="actionForm">
+                    <input type="number" name="dano" class="danoInput" min="0" placeholder="0" required style="border-color: #00ff00;">
+                    <button type="submit" class="btnDano">Causar Dano</button>
+                </form>
+                {% else %}
+                <div class="statusDead">** DERROTADO **</div>
+                {% endif %}
+                
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
